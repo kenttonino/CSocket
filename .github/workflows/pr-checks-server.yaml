@@ -1,0 +1,29 @@
+name: PR Checks - Server
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - 'src_server/**'
+  pull_request:
+    branches: [ "master" ]
+    paths:
+      - 'src_server/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v5
+
+    - name: Build Server
+      run: make build-server
