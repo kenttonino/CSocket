@@ -1,2 +1,3 @@
-# CSocket
-Learning Socket programming in C.
+## Description
+
+> - Learning Socket programming in C.
