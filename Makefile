@@ -1,10 +1,10 @@
 .PHONY: build-client build-server build
 
 build-client:
-	gcc -o ./build/client ./src_client/main.c
+	gcc -o ./build/tcp_client ./tcp_client/main.c
 
 build-server:
-	gcc -o ./build/server ./src_server/main.c
+	gcc -o ./build/tcp_server ./tcp_server/main.c
 
 build: build-client build-server
 
@@ -12,4 +12,4 @@ run-client: build-client
 	./build/client
 
 run-server: build-server
-	./build/server
+	./build/tcp_server
