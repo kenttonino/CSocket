@@ -4,11 +4,11 @@ on:
   push:
     branches: [ "master" ]
     paths:
-      - 'src_server/**'
+      - 'tcp_server/**'
   pull_request:
     branches: [ "master" ]
     paths:
-      - 'src_server/**'
+      - 'tcp_server/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
