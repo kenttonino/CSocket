@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include "./socket/socket.h"
 #include "./utils/utils.h"
+#include "./chat/chat.h"
 
 int main() {
   int socket_file_descriptor;
@@ -31,8 +32,6 @@ int main() {
     printf("Server listening. \n");
   }
 
-  // TODO: Handle the communication between the TCP client and server.
-  // TODO: Handle the printing of buffer sent by the TCP client.
   // Accept data packet from clients.
   socket_length = sizeof(cli);
   connection_file_descriptor = accept(socket_file_descriptor, (SocketAddress*)&cli, &socket_length);
@@ -40,9 +39,10 @@ int main() {
     printf("Server accept failed. \n");
     exit(0);
   } else {
-    printf("Server accept successful.\n");
+    printf("Server accept client connection.\n");
   }
 
+  chat(socket_file_descriptor);
   close(socket_file_descriptor);
 
   return 0;

@@ -23,6 +23,6 @@ void socket_server_binding(int socket_file_descriptor, SocketAddressV4 server_ad
     printf("Socket binding failed. \n");
     exit(0);
   } else {
-    printf("Socket binding sucess. \n");
+    printf("Socket binding success. \n");
   }
 }

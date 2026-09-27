@@ -6,6 +6,7 @@
 /* Custom Macro Definition */
 /* ----------------------- */
 #define PORT 8080
+#define MAX_BUFFER 100
 
 /* ----------------- */
 /* Custom Structures */
