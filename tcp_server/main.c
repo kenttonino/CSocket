@@ -9,32 +9,21 @@
 #include "./socket/socket.h"
 #include "./utils/utils.h"
 
-// Custom variables.
 int main() {
-  int sockfd;
-  int connfd;
-  socklen_t len;
-  SocketAddressV4 servaddr;
+  int socket_file_descriptor;
+  int connection_file_descriptor;
+  socklen_t socket_length;
+  SocketAddressV4 server_address;
   SocketAddressV4 cli;
 
   // Socket creation.
-  sockfd = socket_creation();
-  bzero(&servaddr, sizeof(servaddr));
+  socket_file_descriptor = socket_creation();
 
   // Assign the IP & Port.
-  servaddr.sin_family = AF_INET;
-  servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
-  servaddr.sin_port = htons(8080);
-
-  // Binding created socket to IP.
-  int bind_check = bind(sockfd, (SockAddr*)&servaddr, sizeof(servaddr));
-  if (bind_check != 0) {
-    printf("Socket bind failed. \n");
-    exit(0);
-  }
+  socket_server_binding(socket_file_descriptor, server_address);
 
   // Server ready to listen.
-  int listen_check = listen(sockfd, 5);
+  int listen_check = listen(socket_file_descriptor, 5);
   if (listen_check != 0) {
     printf("Server listen failed. \n");
     exit(0);
@@ -43,17 +32,16 @@ int main() {
   }
 
   // Accept data packet from clients.
-  len = sizeof(cli);
-  connfd = accept(sockfd, (SockAddr*)&cli, &len);
-  if (connfd < 0) {
-    printf("Server accept faild. \n");
+  socket_length = sizeof(cli);
+  connection_file_descriptor = accept(socket_file_descriptor, (SocketAddress*)&cli, &socket_length);
+  if (connection_file_descriptor < 0) {
+    printf("Server accept failed. \n");
     exit(0);
   } else {
     printf("Server accept successful.\n");
   }
 
-
-  close(sockfd);
+  close(socket_file_descriptor);
 
   return 0;
 }

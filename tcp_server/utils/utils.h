@@ -12,6 +12,6 @@
 /* ----------------- */
 // A structure for Socket address IPv4.
 typedef struct sockaddr_in SocketAddressV4;
-typedef struct sockaddr SockAddr;
+typedef struct sockaddr SocketAddress;
 
 #endif
