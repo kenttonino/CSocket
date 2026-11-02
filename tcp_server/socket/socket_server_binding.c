@@ -11,7 +11,7 @@ void socket_server_binding(int socket_file_descriptor, SocketAddressV4 server_ad
   // Assign the IP, Port, and family type (IPv4).
   server_address.sin_family = AF_INET;
   server_address.sin_addr.s_addr = htonl(INADDR_ANY);
-  server_address.sin_port = htons(PORT);
+  server_address.sin_port = PORT;
 
   // Bind created socket to the IP.
   int bind_check = bind(
