@@ -29,7 +29,14 @@ int main() {
     printf("Server listen failed. \n");
     exit(0);
   } else {
-    printf("Server listening. \n");
+    struct sockaddr_in internet_socket_address;
+    socklen_t internet_socket_address_len = sizeof(internet_socket_address);
+
+    if (getsockname(socket_file_descriptor, (struct sockaddr*)&internet_socket_address, &internet_socket_address_len)) {
+      perror("getsockname");
+    } else {
+      printf("Server listening at port %d. \n", internet_socket_address.sin_port);
+    }
   }
 
   // Accept data packet from clients.
